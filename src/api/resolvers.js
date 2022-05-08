@@ -30,8 +30,17 @@ module.exports = {
             const id = result[0]
             return await db('students').where({ id }).first()
         },
-        async deleteStudent(_,  id ) {
+        async deleteStudent(_, id) {
             await db('students').where(id).delete()
+        },
+        async updateStudent(_, { id, input }) {
+            const findStudent = await db('students').where({ id }).update({
+                name: input.name,
+                cpf: input.cpf,
+                email: input.email,
+            })
+            
+            return await db('students').where({ id }).first()
         }
     }
 }
