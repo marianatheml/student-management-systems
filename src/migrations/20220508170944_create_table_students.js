@@ -6,8 +6,6 @@ exports.up = function (knex) {
             table.string('name', 255).notNullable();
             table.string('cpf', 14).notNullable().unique();
             table.string('email', 255).notNullable().unique();
-
-            table.timestamp('created_at').defaultTo(knex.fn.now())
             table.timestamp('updated_at').defaultTo(knex.fn.now())
         })
 };
