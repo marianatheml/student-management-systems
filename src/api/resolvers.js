@@ -19,12 +19,11 @@ module.exports = {
         }
     },
     Mutation: {
-        async createStudent(_, { input }) {
+        async createStudent(_, { name, cpf, email }) {
             const result = await db('students').insert({
-                name: input.name,
-                cpf: input.cpf,
-                email: input.email,
-                created_at: input.created_at
+                name: name,
+                cpf: cpf,
+                email: email
             })
 
             const id = result[0]
@@ -33,11 +32,11 @@ module.exports = {
         async deleteStudent(_, id) {
             await db('students').where(id).delete()
         },
-        async updateStudent(_, { id, input }) {
+        async updateStudent(_, { id, name, cpf, email }) {
             const findStudent = await db('students').where({ id }).update({
-                name: input.name,
-                cpf: input.cpf,
-                email: input.email,
+                name: name,
+                cpf: cpf,
+                email: email,
             })
             
             return await db('students').where({ id }).first()

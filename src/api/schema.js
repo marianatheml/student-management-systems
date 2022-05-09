@@ -19,13 +19,10 @@ const typeDefs = `
         getStudentByEmail(email: String!): Student
         getStudents: [Student]
     }
-    input studentInput {
-        ${studentsAttribs}
-    }
     type Mutation {
-        createStudent(input: studentInput): Student
+        createStudent(${studentsAttribs}): Student
         deleteStudent(id: ID): Student
-        updateStudent(id: ID, input: studentInput): Student
+        updateStudent(id: ID, ${studentsAttribs}): Student
     }
 `
 
